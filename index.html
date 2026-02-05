@@ -98,6 +98,7 @@
             <button class="filter-btn" onclick="filter('ai')">🤖 AI</button>
             <button class="filter-btn" onclick="filter('chip')">🔧 芯片</button>
             <button class="filter-btn" onclick="filter('biz')">🚀 商业</button>
+            <button class="filter-btn" onclick="filter('auto')">🚗 汽车</button>
         </div>
         <div class="news-list" id="newsList"><div class="loading">加载资讯中...</div></div>
     </main>
@@ -139,7 +140,15 @@
                 { id: 13, title: "AI 编程 IDE 初创公司估值达 45 亿美元", category: "biz", icon: "💡", time: "刚刚", source: "Business Insider", summary: "开发者工具初创公司的 AI 助手持续获得全球企业的大规模采用。", content: "AI 编程助手公司 CodeFlow 宣布完成 2 亿美元 C 轮融资，估值达到 45 亿美元。" },
                 { id: 14, title: "微软 Copilot 重大企业更新", category: "biz", icon: "💼", time: "刚刚", source: "Bloomberg", summary: "Microsoft 365 Copilot 宣布推出新企业功能和 GPT-4 Turbo 集成。", content: "微软今日发布 Microsoft 365 Copilot 重大更新，带来多项企业级新功能和改进的 AI 模型支持。" },
                 { id: 15, title: "OpenAI 企业版用户突破 10 万", category: "biz", icon: "🚀", time: "刚刚", source: "TechCrunch", summary: "OpenAI 宣布其企业版 ChatGPT 用户数量突破 10 万大关。", content: "OpenAI 今日宣布，ChatGPT Enterprise 用户已超过 10 万家，覆盖金融、医疗、制造等多个行业。" },
-                { id: 16, title: "AI 芯片市场规模突破 500 亿", category: "biz", icon: "📊", time: "刚刚", source: "Reuters", summary: "全球 AI 芯片市场规模持续高速增长，预计未来三年翻倍。", content: "根据最新行业报告，2025 年全球 AI 芯片市场规模已突破 500 亿美元，年增长率达 45%。" }
+                { id: 16, title: "AI 芯片市场规模突破 500 亿", category: "biz", icon: "📊", time: "刚刚", source: "Reuters", summary: "全球 AI 芯片市场规模持续高速增长，预计未来三年翻倍。", content: "根据最新行业报告，2025 年全球 AI 芯片市场规模已突破 500 亿美元，年增长率达 45%。" },
+                
+                // 汽车新闻
+                { id: 17, title: "特斯拉全新 Model 2 谍照曝光", category: "auto", icon: "🚗", time: "刚刚", source: "Electrek", summary: "特斯拉入门级电动车型 Model 2 谍照曝光，预计售价 2.5 万美元。", content: "特斯拉全新入门级电动车 Model 2 谍照曝光。新车基于新平台打造，续航里程预计 400 公里。" },
+                { id: 18, title: "比亚迪发布固态电池技术突破", category: "auto", icon: "🔋", time: "刚刚", source: "CnEVPost", summary: "比亚迪宣布固态电池技术重大突破，续航有望突破 1000 公里。", content: "比亚迪今日发布固态电池技术进展，能量密度提升 50%，预计 2026 年量产。" },
+                { id: 19, title: "小鹏 XNGP 城市导航辅助驾驶全国开通", category: "auto", icon: "🛣️", time: "刚刚", source: "36氪", summary: "小鹏汽车宣布 XNGP 城市导航辅助驾驶功能在全国所有城市开放。", content: "小鹏汽车今日宣布，XNGP 城市导航辅助驾驶功能已在全国所有城市开放，无需高精地图。" },
+                { id: 20, title: "大众安徽首款智能轿跑 SUV 曝光", category: "auto", icon: "🏎️", time: "刚刚", source: "汽车之家", summary: "大众安徽首款车型谍照曝光，定位智能轿跑 SUV，搭载大疆智驾系统。", content: "大众安徽首款车型谍照曝光。新车定位智能轿跑 SUV，搭载大疆智驾系统，预计 2026 年上市。" },
+                { id: 21, title: "理想汽车第 100 万辆整车下线", category: "auto", icon: "🎯", time: "刚刚", source: "晚点Auto", summary: "理想汽车宣布第 100 万辆整车正式下线，用时不到 5 年。", content: "理想汽车今日宣布，第 100 万辆整车正式下线。从首辆车到 100 万辆，用时不到 5 年。" },
+                { id: 22, title: "宁德时代发布神行 Plus 电池", category: "auto", icon: "⚡", time: "刚刚", source: "IT之家", summary: "宁德时代发布神行 Plus 电池，充电 10 分钟续航 600 公里。", content: "宁德时代今日发布神行 Plus 电池。充电 10 分钟可续航 600 公里，能量密度提升 20%。" }
             ];
             document.getElementById('updateTime').textContent = '静态模式';
             render('all');

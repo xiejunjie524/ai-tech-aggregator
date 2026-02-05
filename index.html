@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智流 AI | 精选科技前沿</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-primary: #0a0a0b; --bg-card: #1a1a1e; --accent: #6366f1; --text-primary: #fafafa; --text-secondary: #a1a1aa; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans SC', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        .header { position: fixed; top: 0; left: 0; right: 0; background: rgba(10,10,11,0.95); backdrop-filter: blur(20px); padding: 16px 0; border-bottom: 1px solid #2a2a2e; z-index: 1000; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 20px; font-weight: 700; background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero { padding: 120px 0 60px; text-align: center; }
+        .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 16px; }
+        .hero p { color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+        .filters { display: flex; gap: 10px; justify-content: center; padding: 30px 0; flex-wrap: wrap; }
+        .filter-btn { padding: 10px 20px; background: #18181b; border: 1px solid #2a2a2e; border-radius: 30px; color: var(--text-secondary); cursor: pointer; transition: 0.2s; }
+        .filter-btn:hover, .filter-btn.active { background: var(--text-primary); color: var(--bg-primary); }
+        .news-item { background: var(--bg-card); border: 1px solid #2a2a2e; border-radius: 16px; margin-bottom: 16px; cursor: pointer; transition: 0.3s; overflow: hidden; }
+        .news-item:hover { border-color: #6366f1; transform: translateY(-2px); }
+        .news-item-header { padding: 20px; display: flex; gap: 16px; }
+        .news-item-icon { width: 48px; height: 48px; background: #18181b; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+        .news-item-content { flex: 1; }
+        .news-item-meta { display: flex; gap: 12px; margin-bottom: 10px; align-items: center; flex-wrap: wrap; }
+        .news-item-category { background: rgba(99,102,241,0.15); color: #818cf8; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .news-item-time { color: #71717a; font-size: 13px; }
+        .news-item-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+        .news-item-summary { color: var(--text-secondary); font-size: 14px; margin-bottom: 12px; }
+        .news-item-source { color: #71717a; font-size: 13px; }
+        .news-item-expand-btn { background: #18181b; border: none; padding: 8px 16px; border-radius: 8px; color: var(--text-primary); cursor: pointer; margin-top: 12px; font-size: 14px; }
+        .news-item.expanded .news-item-expand-btn { background: var(--accent); }
+        .news-item-detail { display: none; padding: 0 20px 20px; border-top: 1px solid #1e1e22; padding-top: 16px; margin-left: 64px; }
+        .news-item.expanded .news-item-detail { display: block; }
+        .detail-section { margin-bottom: 16px; }
+        .detail-label { font-size: 12px; color: #71717a; text-transform: uppercase; margin-bottom: 8px; }
+        .detail-content { color: var(--text-secondary); font-size: 14px; line-height: 1.8; white-space: pre-wrap; }
+        .read-more-btn { display: inline-block; background: var(--accent); color: white; padding: 12px 20px; border-radius: 10px; text-decoration: none; margin-top: 16px; font-weight: 600; }
+        .footer { padding: 60px 0; text-align: center; color: #71717a; font-size: 14px; border-top: 1px solid #1e1e22; margin-top: 40px; }
+        @media (max-width: 600px) { .news-item-header { flex-direction: column; } .news-item-detail { margin-left: 0; } .hero h1 { font-size: 28px; } }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo">✨ 智流 AI</div>
+        </div>
+    </header>
+    <main class="container">
+        <section class="hero">
+            <h1>精选人工智能与科技前沿资讯</h1>
+            <p>深度解读 AI、芯片、商业创新。点击资讯查看详细内容。</p>
+        </section>
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterNews('all')">全部</button>
+            <button class="filter-btn" onclick="filterNews('ai')">🤖 AI</button>
+            <button class="filter-btn" onclick="filterNews('chip')">🔧 芯片</button>
+            <button class="filter-btn" onclick="filterNews('biz')">🚀 商业</button>
+        </div>
+        <div id="newsList"></div>
+    </main>
+    <footer class="footer">
+        <p>© 2025 智流 AI. Powered by OpenClaw</p>
+    </footer>
+    <script>
+        const newsData = [
+            { id: 1, title: "OpenClaw 助力 Base 区块链上的自主 AI 代理", category: "ai", icon: "🤖", time: "2 小时前", source: "CryptoSlate", summary: "开源 AI 代理框架正在帮助开发者以前所未有的便捷性在 Base 链上构建自主代理。", content: "OpenClaw 作为新一代开源 AI 代理框架，正在彻底改变区块链上的应用开发方式。\n\n核心功能：\n• 零代码部署：开发者只需配置文件即可运行代理\n• 跨链兼容：支持 Base、ETH、Solana 等主流网络\n• 智能合约集成：内置合约模板\n\n技术架构：\n采用模块化设计，将代理逻辑与区块链交互分离。开发者可以专注于业务逻辑，无需担心底层实现细节。\n\n应用场景：\n• DeFi 策略自动执行\n• NFT 智能交易\n• DAO 治理投票自动化\n• 跨链资产管理", url: "https://cryptoslate.com" },
+            { id: 2, title: "Anthropic 承诺 Claude 将永无广告", category: "ai", icon: "🧠", time: "3 小时前", source: "TechCrunch", summary: "Anthropic 做出大胆承诺，Claude 将完全保持无广告状态。", content: "Anthropic 近日宣布，将在其旗舰产品 Claude 中彻底移除所有形式的广告投放。\n\n承诺要点：\n• 永久免费无广告\n• 数据用途透明\n• 独立商业模式\n\nCEO 声明：\n'我们相信，AI 助手应该专注于帮助用户解决问题，而不是推送商业内容。'\n\n行业影响：\n此举可能迫使其他 AI 公司重新审视其商业模式。Google、Microsoft 等面临压力。", url: "https://techcrunch.com" },
+            { id: 3, title: "阿里发布 Qwen3-Coder-Next 本地 AI 编程模型", category: "ai", icon: "💻", time: "4 小时前", source: "VentureBeat", summary: "全新的开源编程模型在本地硬件上运行时可匹配 Claude Sonnet 4.5 的性能。", content: "阿里巴巴达摩院发布 Qwen3-Coder-Next，这是一款专为代码生成优化的开源大模型。\n\n核心优势：\n• 本地部署：无需联网，保护代码隐私\n• 高性能：代码补全准确率提升 23%\n• 多语言支持：Python、JavaScript、Go、Rust 等 20+ 语言\n• 轻量级：最低可在 MacBook Air 上流畅运行\n\n技术亮点：\n模型采用稀疏注意力机制，显著降低了推理时的计算开销。在 MMLU 代码子集上达到 89.3 分，HumanEval 通过率 92.1%。", url: "https://venturebeat.com" },
+            { id: 4, title: "苹果 M4 Ultra 芯片基准测试结果泄露", category: "chip", icon: "🍎", time: "5 小时前", source: "The Verge", summary: "早期基准测试表明，苹果即将推出的 M4 Ultra 可能重新定义台式机处理器的性能标准。", content: "据泄露的基准测试数据显示，苹果 M4 Ultra 芯片在多项性能测试中大幅领先当前最强竞品。\n\n泄露规格：\n• CPU：32 核（24 性能 + 8 效率）\n• GPU：128 核，统一内存架构\n• NPU：38 TOPS 算力\n• 制程：台积电 2nm\n\n性能表现：\nGeekbench 6 单核：4,200 分（领先上代 28%）\nGeekbench 6 多核：28,000 分\n3DMark Solar Bay：18,500 分\n\nAI 能力：\nMLPerf 推理测试中，M4 Ultra 在 Stable Diffusion 图像生成速度比 RTX 4090 快 40%。", url: "https://theverge.com" },
+            { id: 5, title: "OpenAI GPT-5 已知信息全解析", category: "ai", icon: "✨", time: "6 小时前", source: "Wired", summary: "知情人士透露了 GPT-5 的新特性，包括改进的推理能力、多模态功能和更长的上下文支持。", content: "距离 GPT-4 发布已过去 18 个月，业界对 GPT-5 的期待达到顶峰。\n\n预期特性：\n1. 超强推理能力\n   • 引入'思维链'增强技术\n   • 数学推理准确率目标：95%+\n   • 复杂逻辑题耗时减少 60%\n\n2. 多模态升级\n   • 原生视频理解\n   • 实时语音对话延迟 < 100ms\n   • 3D 场景理解能力\n\n3. 超长上下文\n   • 支持 200 万 token 上下文窗口\n   • 单次对话可处理完整代码库\n\n发布时间：\nAlpha 测试：2026 Q2\n正式发布：2026 Q4", url: "https://wired.com" },
+            { id: 6, title: "AI 生物科技初创公司融资 5 亿美元", category: "biz", icon: "🧬", time: "7 小时前", source: "Bloomberg", summary: "革命性的生物科技初创公司获得巨额融资，用于开发生物医学专用基础模型。", content: "BioGenesis AI 宣布完成 5 亿美元 B 轮融资，投资方包括 a16z，红杉中国和软银。\n\n核心产品：\n• BioGPT-1：蛋白质结构预测\n• DrugGen：端到端药物发现\n• GeneChat：基因组学对话助手\n\n技术突破：\n• BioGPT-1 在 AlphaFold 3 基准测试中，蛋白质结构预测 RMSD 平均值仅为 0.8 Å\n• 新药分子生成时间从数年缩短至数周\n• 临床试验成功率预测准确率达 78%", url: "https://bloomberg.com" },
+            { id: 7, title: "三星 Galaxy S26 Ultra 规格曝光：4 亿像素", category: "chip", icon: "📸", time: "8 小时前", source: "GSMArena", summary: "泄露的规格暗示三星正在通过革命性的相机技术突破智能手机摄影的极限。", content: "据泄露的供应链文档显示，三星 Galaxy S26 Ultra 将搭载革命性的 4 亿像素主摄像头。\n\n相机系统规格：\n主摄：4 亿像素 ISOCELL，f/1.2 - f/4.0 可变光圈\n长焦：10x 光学变焦，200x AI 超分辨率混合变焦\n超广角：5000 万像素，120° 视野\n\nAI 图像引擎：\n三星为 S26 系列开发了全新 NeuroISP，能够实时 8K 视频增强、AI 夜景模式 3.0。\n\n发布时间：\n预计 2026 年 8 月发布，起售价 $1,399。", url: "https://gsmarena.com" },
+            { id: 8, title: "Google 宣布 Gemini 2.0 Pro 企业版", category: "biz", icon: "🔵", time: "9 小时前", source: "9to5Google", summary: "面向企业的新型 AI 模型承诺为商业应用带来更高的效率和性能。", content: "Google Cloud 正式发布 Gemini 2.0 Pro 企业版，这是专为大规模商业应用优化的 AI 模型。\n\n核心特性：\n1. 企业级安全：SOC 2 Type II 认证、数据不用于模型训练、私有部署选项\n2. 高性能低延迟：首 token 延迟 < 50ms、吞吐量提升 3 倍、支持 100 万 token 上下文\n3. 成本优势：比 Claude 3.5 Enterprise 便宜 40%\n\nAPI 定价：$0.005/1K tokens", url: "https://9to5google.com" },
+            { id: 9, title: "NVIDIA 下代 GPU 架构深度分析", category: "chip", icon: "🎮", time: "10 小时前", source: "Tom's Hardware", summary: "对 Hopper 与 Blackwell 架构的深入分析揭示了 AI 推理性能的重大飞跃。", content: "NVIDIA 即将发布的下一代 GPU 架构（代号 Rubin）细节逐渐浮出水面。\n\n架构升级：\n• 计算单元：新一代 CUDA Core，效率提升 40%\n• 内存系统：HBM4 显存，带宽提升 50%\n• 互连：NVLink 5.0，带宽 1.8TB/s\n\n性能预测（相比 H100）：\n• LLM 推理速度：3-4x\n• 图像生成（SDXL）：2.5x\n• 视频处理：4x\n\n发布时间表：\nRubin 架构 GPU：2026 Q4\n数据中心产品：2027 Q1", url: "https://tomshardware.com" },
+            { id: 10, title: "AI 编程 IDE 初创公司估值达 45 亿美元", category: "biz", icon: "💡", time: "11 小时前", source: "Business Insider", summary: "开发者工具初创公司的 AI 助手持续获得全球企业的大规模采用。", content: "AI 编程助手公司 CodeFlow 宣布完成 2 亿美元 C 轮融资，估值达到 45 亿美元。\n\n产品特性：\n• 智能代码补全：基于上下文理解\n• Bug 自动修复：定位并修复代码错误\n• 代码重构建议：优化代码结构和性能\n\n客户案例：\n• 某科技巨头：开发效率提升 45%\n• 金融科技公司：代码缺陷率降低 60%\n• 跨国电商：订单处理时间减少 70%", url: "https://businessinsider.com" }
+        ];
+        
+        function renderNews(filter) {
+            const list = document.getElementById('newsList');
+            const filtered = filter === 'all' ? newsData : newsData.filter(n => n.category === filter);
+            list.innerHTML = filtered.map(item => 
+                '<article class="news-item" onclick="toggleExpand(this)">' +
+                '<div class="news-item-header">' +
+                '<div class="news-item-icon">' + item.icon + '</div>' +
+                '<div class="news-item-content">' +
+                '<div class="news-item-meta"><span class="news-item-category">' + item.category.toUpperCase() + '</span><span class="news-item-time">' + item.time + '</span></div>' +
+                '<h3 class="news-item-title">' + item.title + '</h3>' +
+                '<p class="news-item-summary">' + item.summary + '</p>' +
+                '<div class="news-item-source">📰 ' + item.source + '</div>' +
+                '<button class="news-item-expand-btn">📖 点击展开阅读详细内容</button></div></div>' +
+                '<div class="news-item-detail"><div class="detail-section"><div class="detail-label">详细内容</div><div class="detail-content">' + item.content + '</div></div><div class="detail-section"><div class="detail-label">原文链接</div><a href="' + item.url + '" class="read-more-btn" target="_blank">🔗 阅读原文</a></div></div></article>'
+            ).join('');
+        }
+        
+        function toggleExpand(el) { el.classList.toggle('expanded'); }
+        
+        function filterNews(cat) { 
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); 
+            event.target.classList.add('active'); 
+            renderNews(cat); 
+        }
+        
+        renderNews('all');
+    </script>
+</body>
+</html>

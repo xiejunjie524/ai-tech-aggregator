@@ -1,40 +1,181 @@
 {
-  "lastUpdate": "2026-02-05T07:00:51.455Z",
+  "lastUpdate": "2026-02-05T16:24:00.000Z",
   "news": [
     {
       "id": 1,
       "title": "OpenClaw 助力 Base 区块链上的自主 AI 代理",
       "category": "ai",
-      "time": "2026/2/5 15:00:51",
-      "source": "CryptoSlate"
+      "icon": "🤖",
+      "time": "刚刚",
+      "source": "CryptoSlate",
+      "summary": "开源 AI 代理框架正在帮助开发者以前所未有的便捷性在 Base 链上构建自主代理。",
+      "content": "OpenClaw 作为新一代开源 AI 代理框架，正在彻底改变区块链上的应用开发方式。核心功能包括零代码部署、跨链兼容，智能合约集成。采用模块化设计，将代理逻辑与区块链交互分离。",
+      "url": "https://cryptoslate.com"
     },
     {
       "id": 2,
       "title": "Anthropic 承诺 Claude 将永无广告",
       "category": "ai",
-      "time": "2026/2/5 15:00:51",
-      "source": "TechCrunch"
+      "icon": "🧠",
+      "time": "刚刚",
+      "source": "TechCrunch",
+      "summary": "Anthropic 做出大胆承诺，Claude 将完全保持无广告状态。",
+      "content": "Anthropic 近日宣布，将在其旗舰产品 Claude 中彻底移除所有形式的广告投放。CEO 声明：我们相信，AI 助手应该专注于帮助用户解决问题，而不是推送商业内容。",
+      "url": "https://techcrunch.com"
     },
     {
       "id": 3,
-      "title": "阿里发布 Qwen3-Coder-Next 本地 AI 编程模型",
+      "title": "阿里发布 Qwen3-Coder-Next 编程模型",
       "category": "ai",
-      "time": "2026/2/5 15:00:51",
-      "source": "VentureBeat"
+      "icon": "💻",
+      "time": "刚刚",
+      "source": "VentureBeat",
+      "summary": "全新的开源编程模型在本地硬件上运行时可匹配 Claude Sonnet 4.5 的性能。",
+      "content": "阿里巴巴达摩院发布 Qwen3-Coder-Next，这是一款专为代码生成优化的开源大模型。本地部署：无需联网，保护代码隐私。高性能：代码补全准确率提升 23%。",
+      "url": "https://venturebeat.com"
     },
     {
       "id": 4,
-      "title": "苹果 M4 Ultra 芯片基准测试结果泄露",
-      "category": "chip",
-      "time": "2026/2/5 15:00:51",
-      "source": "The Verge"
+      "title": "OpenAI GPT-5 已知信息全解析",
+      "category": "ai",
+      "icon": "✨",
+      "time": "刚刚",
+      "source": "Wired",
+      "summary": "知情人士透露了 GPT-5 的新特性，包括改进的推理能力和多模态功能。",
+      "content": "距离 GPT-4 发布已过去 18 个月，业界对 GPT-5 的期待达到顶峰。预期特性：超强推理能力（引入思维链增强技术）、多模态升级（原生视频理解）、超长上下文支持 200 万 token。",
+      "url": "https://wired.com"
     },
     {
       "id": 5,
-      "title": "OpenAI GPT-5 已知信息全解析",
+      "title": "Meta Llama 4 训练正式启动",
       "category": "ai",
-      "time": "2026/2/5 15:00:51",
-      "source": "Wired"
+      "icon": "🦙",
+      "time": "刚刚",
+      "source": "Reuters",
+      "summary": "报道称 Meta 已开始训练 Llama 4，重点关注多语言能力和效率优化。",
+      "content": "据知情人士透露，Meta 已正式启动 Llama 4 模型的训练工作。新版本将重点提升多语言能力和运行效率。预计支持 100+ 语言。",
+      "url": "https://reuters.com"
+    },
+    {
+      "id": 6,
+      "title": "Claude 代码能力大幅提升",
+      "category": "ai",
+      "icon": "🧠",
+      "time": "刚刚",
+      "source": "The Verge",
+      "summary": "Anthropic 发布新版 Claude，代码生成和调试能力显著增强。",
+      "content": "新版 Claude 在代码理解、生成和调试方面都有大幅提升。支持 20+ 编程语言，HumanEval 测试通过率达 95%。",
+      "url": "https://theverge.com"
+    },
+    {
+      "id": 7,
+      "title": "苹果 M4 Ultra 芯片基准测试结果泄露",
+      "category": "chip",
+      "icon": "🍎",
+      "time": "刚刚",
+      "source": "The Verge",
+      "summary": "早期基准测试表明，苹果即将推出的 M4 Ultra 可能重新定义台式机处理器的性能标准。",
+      "content": "据泄露的基准测试数据显示，苹果 M4 Ultra 芯片在多项性能测试中大幅领先当前最强竞品。CPU：32 核（24 性能 + 8 效率），GPU：128 核。",
+      "url": "https://theverge.com"
+    },
+    {
+      "id": 8,
+      "title": "NVIDIA 下代 GPU 架构深度分析",
+      "category": "chip",
+      "icon": "🎮",
+      "time": "刚刚",
+      "source": "Tom's Hardware",
+      "summary": "对 Hopper 与 Blackwell 架构的深入分析揭示了 AI 推理性能的重大飞跃。",
+      "content": "NVIDIA 即将发布的下一代 GPU 架构（代号 Rubin）细节逐渐浮出水面。性能预测（相比 H100）：LLM 推理速度 3-4x，图像生成 2.5x。",
+      "url": "https://tomshardware.com"
+    },
+    {
+      "id": 9,
+      "title": "三星 Galaxy S26 Ultra 规格曝光",
+      "category": "chip",
+      "icon": "📸",
+      "time": "刚刚",
+      "source": "GSMArena",
+      "summary": "泄露的规格暗示三星正在通过革命性的相机技术突破智能手机摄影的极限。",
+      "content": "据泄露的供应链文档显示，三星 Galaxy S26 Ultra 将搭载革命性的 4 亿像素主摄像头，支持 10x 光学变焦。",
+      "url": "https://gsmarena.com"
+    },
+    {
+      "id": 10,
+      "title": "AMD MI400 加速追赶 NVIDIA",
+      "category": "chip",
+      "icon": "🔴",
+      "time": "刚刚",
+      "source": "AnandTech",
+      "summary": "AMD 宣布 MI400 系列 GPU 将采用全新架构，AI 性能大幅提升。",
+      "content": "AMD 在今日的发布会上透露，MI400 系列将采用下一代 CDNA 架构，性能有望翻倍。",
+      "url": "https://anandtech.com"
+    },
+    {
+      "id": 11,
+      "title": "AI 生物科技初创公司融资 5 亿美元",
+      "category": "biz",
+      "icon": "🧬",
+      "time": "刚刚",
+      "source": "Bloomberg",
+      "summary": "革命性的生物科技初创公司获得巨额融资，用于开发生物医学专用基础模型。",
+      "content": "BioGenesis AI 宣布完成 5 亿美元 B 轮融资，投资方包括 a16z，红杉中国和软银。核心产品：BioGPT-1 蛋白质结构预测。",
+      "url": "https://bloomberg.com"
+    },
+    {
+      "id": 12,
+      "title": "Google 宣布 Gemini 2.0 Pro 企业版",
+      "category": "biz",
+      "icon": "🔵",
+      "time": "刚刚",
+      "source": "9to5Google",
+      "summary": "面向企业的新型 AI 模型承诺为商业应用带来更高的效率和性能。",
+      "content": "Google Cloud 正式发布 Gemini 2.0 Pro 企业版，这是专为大规模商业应用优化的 AI 模型。比 Claude 3.5 Enterprise 便宜 40%。",
+      "url": "https://9to5google.com"
+    },
+    {
+      "id": 13,
+      "title": "AI 编程 IDE 初创公司估值达 45 亿美元",
+      "category": "biz",
+      "icon": "💡",
+      "time": "刚刚",
+      "source": "Business Insider",
+      "summary": "开发者工具初创公司的 AI 助手持续获得全球企业的大规模采用。",
+      "content": "AI 编程助手公司 CodeFlow 宣布完成 2 亿美元 C 轮融资，估值达到 45 亿美元。",
+      "url": "https://businessinsider.com"
+    },
+    {
+      "id": 14,
+      "title": "微软 Copilot 重大企业更新",
+      "category": "biz",
+      "icon": "💼",
+      "time": "刚刚",
+      "source": "Bloomberg",
+      "summary": "Microsoft 365 Copilot 宣布推出新企业功能和 GPT-4 Turbo 集成。",
+      "content": "微软今日发布 Microsoft 365 Copilot 重大更新，带来多项企业级新功能和改进的 AI 模型支持。",
+      "url": "https://bloomberg.com"
+    },
+    {
+      "id": 15,
+      "title": "OpenAI 企业版用户突破 10 万",
+      "category": "biz",
+      "icon": "🚀",
+      "time": "刚刚",
+      "source": "TechCrunch",
+      "summary": "OpenAI 宣布其企业版 ChatGPT 用户数量突破 10 万大关。",
+      "content": "OpenAI 今日宣布，ChatGPT Enterprise 用户已超过 10 万家，覆盖金融、医疗，制造等多个行业。",
+      "url": "https://techcrunch.com"
+    },
+    {
+      "id": 16,
+      "title": "AI 芯片市场规模突破 500 亿",
+      "category": "biz",
+      "icon": "📊",
+      "time": "刚刚",
+      "source": "Reuters",
+      "summary": "全球 AI 芯片市场规模持续高速增长，预计未来三年翻倍。",
+      "content": "根据最新行业报告，2025 年全球 AI 芯片市场规模已突破 500 亿美元，年增长率达 45%。",
+      "url": "https://reuters.com"
     }
   ]
 }

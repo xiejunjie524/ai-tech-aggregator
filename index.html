@@ -166,7 +166,7 @@
                     </div>
                     <div class="news-detail">
                         <p class="detail-content">${item.content}</p>
-                        <a href="#" class="read-more-link">🔗 阅读原文</a>
+                        <a href="${item.url || '#'}" class="read-more-link" target="_blank">🔗 阅读原文</a>
                     </div>
                 </article>
             `).join('');

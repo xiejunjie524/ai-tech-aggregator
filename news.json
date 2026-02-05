@@ -1,0 +1,40 @@
+{
+  "lastUpdate": "2026-02-05T07:00:51.455Z",
+  "news": [
+    {
+      "id": 1,
+      "title": "OpenClaw 助力 Base 区块链上的自主 AI 代理",
+      "category": "ai",
+      "time": "2026/2/5 15:00:51",
+      "source": "CryptoSlate"
+    },
+    {
+      "id": 2,
+      "title": "Anthropic 承诺 Claude 将永无广告",
+      "category": "ai",
+      "time": "2026/2/5 15:00:51",
+      "source": "TechCrunch"
+    },
+    {
+      "id": 3,
+      "title": "阿里发布 Qwen3-Coder-Next 本地 AI 编程模型",
+      "category": "ai",
+      "time": "2026/2/5 15:00:51",
+      "source": "VentureBeat"
+    },
+    {
+      "id": 4,
+      "title": "苹果 M4 Ultra 芯片基准测试结果泄露",
+      "category": "chip",
+      "time": "2026/2/5 15:00:51",
+      "source": "The Verge"
+    },
+    {
+      "id": 5,
+      "title": "OpenAI GPT-5 已知信息全解析",
+      "category": "ai",
+      "time": "2026/2/5 15:00:51",
+      "source": "Wired"
+    }
+  ]
+}

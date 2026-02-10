@@ -3,163 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智流 AI | 科技前沿</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <title>NEXUS | AI INTELLIGENCE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #e2e8f0;
-            --text-sub: #94a3b8;
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.2);
-            --border: #334155;
+            --bg: #050505;
+            --card-bg: #111;
+            --border: #333;
+            --accent: #00f0ff;
+            --text-main: #fff;
+            --text-sub: #888;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text-main);
-            line-height: 1.6;
-            padding-bottom: 40px;
+            min-height: 100vh;
+            padding: 40px;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        
+        /* 头部 */
         header {
-            text-align: center;
-            padding: 40px 0;
+            max-width: 1200px;
+            margin: 0 auto 60px;
             border-bottom: 1px solid var(--border);
-            margin-bottom: 40px;
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
         }
         h1 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 2rem;
-            background: linear-gradient(90deg, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 1;
         }
-        .last-update {
-            font-size: 0.9rem;
+        h1 span { color: var(--accent); }
+        .status {
+            font-family: 'Space Grotesk', monospace;
             color: var(--text-sub);
+            font-size: 0.9rem;
         }
-        .news-grid {
+        .status::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #0f0;
+            border-radius: 50%;
+            margin-right: 8px;
+            box-shadow: 0 0 10px #0f0;
+        }
+
+        /* Bento Grid 布局 */
+        .grid {
             display: grid;
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-auto-rows: 240px;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        .news-card {
+        
+        /* 卡片样式 */
+        .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px;
-            transition: all 0.3s ease;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s;
+            cursor: pointer;
             position: relative;
             overflow: hidden;
         }
-        .news-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        .card:hover {
             border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 240, 255, 0.1);
         }
-        .meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            font-size: 0.85rem;
-            color: var(--text-sub);
-        }
-        .tag {
-            background: rgba(56, 189, 248, 0.1);
+        .card::after {
+            content: '↗';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: 0.3s;
             color: var(--accent);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
+        }
+        .card:hover::after { opacity: 1; top: 15px; right: 15px; }
+
+        /* 大卡片逻辑 */
+        .card.large {
+            grid-column: span 2;
+            grid-row: span 1;
+            background: linear-gradient(45deg, #111, #1a1a1a);
+        }
+        .card.tall {
+            grid-row: span 2;
+        }
+
+        .meta {
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 10px;
             text-transform: uppercase;
         }
-        h2 {
-            font-size: 1.25rem;
-            margin-bottom: 12px;
-            line-height: 1.4;
+        .title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 10px;
         }
-        h2 a {
-            color: var(--text-main);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        h2 a:hover {
-            color: var(--accent);
-        }
-        p {
+        .preview {
             color: var(--text-sub);
             font-size: 0.95rem;
-            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
-        .footer-meta {
-            display: flex;
+
+        /* 弹窗 Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
             align-items: center;
-            gap: 10px;
-            font-size: 0.85rem;
-            color: #64748b;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-        .source-icon {
-            font-style: normal;
+        .modal-overlay.active { display: flex; opacity: 1; }
+        
+        .modal {
+            background: #151515;
+            border: 1px solid var(--border);
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 4px;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
-        @media (max-width: 600px) {
-            h1 { font-size: 1.5rem; }
-            .container { padding: 16px; }
+        .modal-overlay.active .modal { transform: scale(1); }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
-        .loading { text-align: center; padding: 40px; color: var(--text-sub); }
+        .modal-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #000;
+            padding: 12px 30px;
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: 30px;
+            text-transform: uppercase;
+            font-family: 'Space Grotesk', sans-serif;
+            transition: 0.2s;
+        }
+        .modal-btn:hover {
+            background: #fff;
+            box-shadow: 0 0 20px rgba(255,255,255,0.5);
+        }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            .card.large { grid-column: span 1; }
+            h1 { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>AI TECH AGGREGATOR</h1>
-            <div class="last-update" id="last-update">Loading data...</div>
-        </header>
-        <main class="news-grid" id="news-container">
-            <div class="loading">Initializing neural link...</div>
-        </main>
+    <header>
+        <h1>NEXUS <span>.AI</span></h1>
+        <div class="status" id="status">SYSTEM ONLINE</div>
+    </header>
+
+    <div class="grid" id="grid">
+        <!-- Cards will be injected here -->
+    </div>
+
+    <!-- 详情弹窗 -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+        <div class="modal">
+            <button class="close-btn" onclick="closeModal(event)">×</button>
+            <div class="meta" id="m-meta">CATEGORY • DATE</div>
+            <h2 class="title" id="m-title" style="font-size: 2rem; margin-bottom: 20px;">Title</h2>
+            <p id="m-content" style="font-size: 1.1rem; line-height: 1.8; color: #ccc;">Content...</p>
+            <a href="#" target="_blank" id="m-link" class="modal-btn">READ SOURCE -></a>
+        </div>
     </div>
 
     <script>
-        async function loadNews() {
+        let newsData = [];
+
+        async function init() {
             try {
-                // Add cache-busting param
                 const res = await fetch('news.json?' + new Date().getTime());
                 const data = await res.json();
+                newsData = data.news;
                 
-                // Update timestamp
-                const date = new Date(data.lastUpdate);
-                document.getElementById('last-update').textContent = 
-                    `Last Sync: ${date.toLocaleString('zh-CN', { hour12: false })}`;
+                document.getElementById('status').innerText = 
+                    `UPDATED: ${new Date(data.lastUpdate).toLocaleString()}`;
 
-                const container = document.getElementById('news-container');
-                container.innerHTML = data.news.map(item => `
-                    <article class="news-card">
-                        <div class="meta">
-                            <span class="tag">${item.category}</span>
-                            <span class="time">${item.time}</span>
+                const grid = document.getElementById('grid');
+                grid.innerHTML = newsData.map((item, index) => {
+                    // 让第1个是长条，第4个是高条，制造错落感
+                    let className = 'card';
+                    if (index === 0) className += ' large';
+                    if (index === 3) className += ' tall';
+                    
+                    return `
+                    <div class="${className}" onclick="openModal(${index})">
+                        <div>
+                            <div class="meta">${item.category} • ${item.source}</div>
+                            <div class="title">${item.title}</div>
                         </div>
-                        <h2><a href=" " target="_blank">${item.title}</a ></h2>
-                        <p>${item.summary}</p >
-                        <div class="footer-meta">
-                            <span class="source-icon">${item.icon}</span>
-                            <span>${item.source}</span>
-                        </div>
-                    </article>
-                `).join('');
+                        <div class="preview">${item.summary}</div>
+                    </div>
+                    `;
+                }).join('');
             } catch (e) {
-                document.getElementById('news-container').innerHTML = 
-                    `<div class="loading" style="color: #ef4444">System Failure: ${e.message}</div>`;
+                document.getElementById('grid').innerHTML = `<div style="color:red">OFFLINE MODE</div>`;
             }
         }
-        loadNews();
+
+        function openModal(index) {
+            const item = newsData[index];
+            document.getElementById('m-meta').innerText = `${item.category} • ${item.time}`;
+            document.getElementById('m-title').innerText = item.title;
+            document.getElementById('m-content').innerText = item.summary; // 这里显示完整摘要
+            document.getElementById('m-link').href = item.url;
+            
+            const overlay = document.getElementById('modal-overlay');
+            overlay.classList.add('active');
+        }
+
+        function closeModal(e) {
+            if (e.target === document.getElementById('modal-overlay') || e.target.classList.contains('close-btn')) {
+                document.getElementById('modal-overlay').classList.remove('active');
+            }
+        }
+
+        init();
     </script>
 </body>
 </html>

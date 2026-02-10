@@ -123,5 +123,43 @@
             <div class="last-update" id="last-update">Loading data...</div>
         </header>
         <main class="news-grid" id="news-container">
+            <div class="loading">Initializing neural link...</div>
+        </main>
+    </div>
+
+    <script>
+        async function loadNews() {
+            try {
+                // Add cache-busting param
+                const res = await fetch('news.json?' + new Date().getTime());
+                const data = await res.json();
+                
+                // Update timestamp
+                const date = new Date(data.lastUpdate);
+                document.getElementById('last-update').textContent = 
+                    `Last Sync: ${date.toLocaleString('zh-CN', { hour12: false })}`;
+
+                const container = document.getElementById('news-container');
+                container.innerHTML = data.news.map(item => `
+                    <article class="news-card">
+                        <div class="meta">
+                            <span class="tag">${item.category}</span>
+                            <span class="time">${item.time}</span>
+                        </div>
+                        <h2><a href=" " target="_blank">${item.title}</a ></h2>
+                        <p>${item.summary}</p >
+                        <div class="footer-meta">
+                            <span class="source-icon">${item.icon}</span>
+                            <span>${item.source}</span>
+                        </div>
+                    </article>
+                `).join('');
+            } catch (e) {
+                document.getElementById('news-container').innerHTML = 
+                    `<div class="loading" style="color: #ef4444">System Failure: ${e.message}</div>`;
+            }
+        }
+        loadNews();
+    </script>
 </body>
 </html>

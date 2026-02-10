@@ -4,189 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>智流 AI | 科技前沿</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #0d1117;
-            --bg-card: #161b22;
-            --bg-hover: #21262d;
-            --border: #30363d;
-            --text-primary: #f0f6fc;
-            --text-secondary: #8b949e;
-            --accent: #58a6ff;
-            --accent-hover: #79c0ff;
-            --gradient: linear-gradient(135deg, #58a6ff 0%, #a371f7 100%);
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #e2e8f0;
+            --text-sub: #94a3b8;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.2);
+            --border: #334155;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-main);
-            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
             line-height: 1.6;
+            padding-bottom: 40px;
         }
-        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
         header {
-            position: sticky;
-            top: 0;
-            background: rgba(13, 17, 23, 0.9);
-            backdrop-filter: blur(12px);
+            text-align: center;
+            padding: 40px 0;
             border-bottom: 1px solid var(--border);
-            padding: 16px 0;
-            z-index: 100;
+            margin-bottom: 40px;
         }
-        header .container { display: flex; align-items: center; justify-content: space-between; }
-        .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 20px; }
-        .logo-icon { width: 36px; height: 36px; background: var(--gradient); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-        .logo-text { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero { padding: 80px 0 60px; text-align: center; }
-        .hero h1 { font-size: 48px; font-weight: 700; margin-bottom: 16px; letter-spacing: -1px; }
-        .hero h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-desc { color: var(--text-secondary); font-size: 18px; max-width: 600px; margin: 0 auto; }
-        .last-update { margin-top: 20px; padding: 10px 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 30px; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-secondary); }
-        .last-update .dot { width: 8px; height: 8px; background: #3fb950; border-radius: 50%; animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        .filters { display: flex; gap: 8px; justify-content: center; padding: 30px 0; flex-wrap: wrap; }
-        .filter-btn { padding: 10px 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; color: var(--text-secondary); font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
-        .filter-btn:hover { border-color: var(--text-secondary); color: var(--text-primary); }
-        .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-        .news-list { padding-bottom: 80px; }
-        .news-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; transition: all 0.2s; }
-        .news-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-        .news-card.expanded { border-color: var(--accent); }
-        .news-header { padding: 20px 24px; display: flex; gap: 16px; cursor: pointer; }
-        .news-icon { width: 48px; height: 48px; background: var(--bg-hover); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
-        .news-content { flex: 1; }
-        .news-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-        .news-tag { padding: 3px 10px; background: rgba(88, 166, 255, 0.15); color: var(--accent); border-radius: 20px; font-size: 12px; font-weight: 600; }
-        .news-time { font-size: 13px; color: var(--text-secondary); }
-        .news-title { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
-        .news-summary { color: var(--text-secondary); font-size: 14px; }
-        .news-source { font-size: 13px; color: var(--text-secondary); margin-top: 8px; }
-        .expand-btn { padding: 6px 14px; background: var(--bg-hover); border: none; border-radius: 6px; color: var(--text-secondary); font-size: 13px; cursor: pointer; transition: all 0.2s; }
-        .news-card:hover .expand-btn { background: var(--accent); color: #fff; }
-        .news-detail { display: none; padding: 0 24px 20px; border-top: 1px solid var(--border); margin-left: 64px; padding-top: 16px; }
-        .news-card.expanded .news-detail { display: block; }
-        .news-card.expanded .expand-btn { background: var(--accent); color: #fff; }
-        .detail-content { color: var(--text-secondary); font-size: 15px; line-height: 1.8; white-space: pre-wrap; }
-        .read-more-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 10px 18px; background: var(--accent); border-radius: 8px; color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s; }
-        .read-more-link:hover { background: var(--accent-hover); }
-        footer { border-top: 1px solid var(--border); padding: 40px 0; text-align: center; color: var(--text-secondary); font-size: 14px; }
-        .loading { text-align: center; padding: 60px; color: var(--text-secondary); }
-        @media (max-width: 640px) { .hero h1 { font-size: 32px; } .news-header { flex-direction: column; } .news-detail { margin-left: 0; } }
+        h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .last-update {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+        .news-grid {
+            display: grid;
+            gap: 24px;
+        }
+        .news-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            border-color: var(--accent);
+        }
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+        .tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        h2 a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        h2 a:hover {
+            color: var(--accent);
+        }
+        p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+        .footer-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+        .source-icon {
+            font-style: normal;
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 1.5rem; }
+            .container { padding: 16px; }
+        }
+        .loading { text-align: center; padding: 40px; color: var(--text-sub); }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <div class="logo-icon">✨</div>
-                <div class="logo-text">智流 AI</div>
-            </div>
-        </div>
-    </header>
-    <main class="container">
-        <section class="hero">
-            <h1>精选 <span>AI 与科技前沿</span></h1>
-            <p class="hero-desc">每日精选人工智能、商业创新与前沿技术资讯</p>
-            <div class="last-update">
-                <span class="dot"></span>
-                <span id="updateTime">加载中...</span>
-            </div>
-        </section>
-        <div class="filters">
-            <button class="filter-btn active" onclick="filter('all')">全部</button>
-            <button class="filter-btn" onclick="filter('ai')">🤖 AI</button>
-            <button class="filter-btn" onclick="filter('chip')">🔧 芯片</button>
-            <button class="filter-btn" onclick="filter('biz')">🚀 商业</button>
-            <button class="filter-btn" onclick="filter('auto')">🚗 汽车</button>
-        </div>
-        <div class="news-list" id="newsList"><div class="loading">加载资讯中...</div></div>
-    </main>
-    <footer><p>Powered by OpenClaw · 自动更新</p></footer>
-    <script>
-        let allNews = [];
-        
-        async function loadNews() {
-            try {
-                const res = await fetch('news.json?t=' + Date.now());
-                const data = await res.json();
-                allNews = data.news;
-                document.getElementById('updateTime').textContent = '最后更新: ' + new Date(data.lastUpdate).toLocaleString('zh-CN');
-                render('all');
-            } catch (e) {
-                renderStatic();
-            }
-        }
-        
-        function renderStatic() {
-            allNews = [
-                // AI 新闻
-                { id: 1, title: "OpenClaw 助力 Base 区块链上的自主 AI 代理", category: "ai", icon: "🤖", time: "刚刚", source: "CryptoSlate", summary: "开源 AI 代理框架正在帮助开发者以前所未有的便捷性在 Base 链上构建自主代理。", content: "OpenClaw 作为新一代开源 AI 代理框架，正在彻底改变区块链上的应用开发方式。核心功能包括零代码部署、跨链兼容、智能合约集成。" },
-                { id: 2, title: "Anthropic 承诺 Claude 将永无广告", category: "ai", icon: "🧠", time: "刚刚", source: "TechCrunch", summary: "Anthropic 做出大胆承诺，Claude 将完全保持无广告状态。", content: "Anthropic 近日宣布，将在其旗舰产品 Claude 中彻底移除所有形式的广告投放。CEO 声明：我们相信，AI 助手应该专注于帮助用户解决问题。" },
-                { id: 3, title: "阿里发布 Qwen3-Coder-Next 编程模型", category: "ai", icon: "💻", time: "刚刚", source: "VentureBeat", summary: "全新的开源编程模型在本地硬件上运行时可匹配 Claude Sonnet 4.5 的性能。", content: "阿里巴巴达摩院发布 Qwen3-Coder-Next，这是一款专为代码生成优化的开源大模型。本地部署：无需联网，保护代码隐私。" },
-                { id: 4, title: "OpenAI GPT-5 已知信息全解析", category: "ai", icon: "✨", time: "刚刚", source: "Wired", summary: "知情人士透露了 GPT-5 的新特性，包括改进的推理能力和多模态功能。", content: "距离 GPT-4 发布已过去 18 个月，业界对 GPT-5 的期待达到顶峰。预期特性：超强推理能力、多模态升级、超长上下文支持。" },
-                { id: 5, title: "Meta Llama 4 训练正式启动", category: "ai", icon: "🦙", time: "刚刚", source: "Reuters", summary: "报道称 Meta 已开始训练 Llama 4，重点关注多语言能力和效率优化。", content: "据知情人士透露，Meta 已正式启动 Llama 4 模型的训练工作。新版本将重点提升多语言能力和运行效率。" },
-                { id: 6, title: "Claude 代码能力大幅提升", category: "ai", icon: "🧠", time: "刚刚", source: "The Verge", summary: "Anthropic 发布新版 Claude，代码生成和调试能力显著增强。", content: "新版 Claude 在代码理解、生成和调试方面都有大幅提升。支持 20+ 编程语言，HumanEval 测试通过率达 95%。" },
-                
-                // 芯片新闻
-                { id: 7, title: "苹果 M4 Ultra 芯片基准测试结果泄露", category: "chip", icon: "🍎", time: "刚刚", source: "The Verge", summary: "早期基准测试表明，苹果即将推出的 M4 Ultra 可能重新定义台式机处理器的性能标准。", content: "据泄露的基准测试数据显示，苹果 M4 Ultra 芯片在多项性能测试中大幅领先当前最强竞品。" },
-                { id: 8, title: "NVIDIA 下代 GPU 架构深度分析", category: "chip", icon: "🎮", time: "刚刚", source: "Tom's Hardware", summary: "对 Hopper 与 Blackwell 架构的深入分析揭示了 AI 推理性能的重大飞跃。", content: "NVIDIA 即将发布的下一代 GPU 架构（代号 Rubin）细节逐渐浮出水面。性能预测（相比 H100）：LLM 推理速度 3-4x。" },
-                { id: 9, title: "三星 Galaxy S26 Ultra 规格曝光", category: "chip", icon: "📸", time: "刚刚", source: "GSMArena", summary: "泄露的规格暗示三星正在通过革命性的相机技术突破智能手机摄影的极限。", content: "据泄露的供应链文档显示，三星 Galaxy S26 Ultra 将搭载革命性的 4 亿像素主摄像头。" },
-                { id: 10, title: "AMD MI400 加速追赶 NVIDIA", category: "chip", icon: "🔴", time: "刚刚", source: "AnandTech", summary: "AMD 宣布 MI400 系列 GPU 将采用全新架构，AI 性能大幅提升。", content: "AMD 在今日的发布会上透露，MI400 系列将采用下一代 CDNA 架构，性能有望翻倍。" },
-                
-                // 商业新闻
-                { id: 11, title: "AI 生物科技初创公司融资 5 亿美元", category: "biz", icon: "🧬", time: "刚刚", source: "Bloomberg", summary: "革命性的生物科技初创公司获得巨额融资，用于开发生物医学专用基础模型。", content: "BioGenesis AI 宣布完成 5 亿美元 B 轮融资，投资方包括 a16z，红杉中国和软银。" },
-                { id: 12, title: "Google 宣布 Gemini 2.0 Pro 企业版", category: "biz", icon: "🔵", time: "刚刚", source: "9to5Google", summary: "面向企业的新型 AI 模型承诺为商业应用带来更高的效率和性能。", content: "Google Cloud 正式发布 Gemini 2.0 Pro 企业版，这是专为大规模商业应用优化的 AI 模型。" },
-                { id: 13, title: "AI 编程 IDE 初创公司估值达 45 亿美元", category: "biz", icon: "💡", time: "刚刚", source: "Business Insider", summary: "开发者工具初创公司的 AI 助手持续获得全球企业的大规模采用。", content: "AI 编程助手公司 CodeFlow 宣布完成 2 亿美元 C 轮融资，估值达到 45 亿美元。" },
-                { id: 14, title: "微软 Copilot 重大企业更新", category: "biz", icon: "💼", time: "刚刚", source: "Bloomberg", summary: "Microsoft 365 Copilot 宣布推出新企业功能和 GPT-4 Turbo 集成。", content: "微软今日发布 Microsoft 365 Copilot 重大更新，带来多项企业级新功能和改进的 AI 模型支持。" },
-                { id: 15, title: "OpenAI 企业版用户突破 10 万", category: "biz", icon: "🚀", time: "刚刚", source: "TechCrunch", summary: "OpenAI 宣布其企业版 ChatGPT 用户数量突破 10 万大关。", content: "OpenAI 今日宣布，ChatGPT Enterprise 用户已超过 10 万家，覆盖金融、医疗、制造等多个行业。" },
-                { id: 16, title: "AI 芯片市场规模突破 500 亿", category: "biz", icon: "📊", time: "刚刚", source: "Reuters", summary: "全球 AI 芯片市场规模持续高速增长，预计未来三年翻倍。", content: "根据最新行业报告，2025 年全球 AI 芯片市场规模已突破 500 亿美元，年增长率达 45%。" },
-                
-                // 汽车新闻
-                { id: 17, title: "特斯拉全新 Model 2 谍照曝光", category: "auto", icon: "🚗", time: "刚刚", source: "Electrek", summary: "特斯拉入门级电动车型 Model 2 谍照曝光，预计售价 2.5 万美元。", content: "特斯拉全新入门级电动车 Model 2 谍照曝光。新车基于新平台打造，续航里程预计 400 公里。" },
-                { id: 18, title: "比亚迪发布固态电池技术突破", category: "auto", icon: "🔋", time: "刚刚", source: "CnEVPost", summary: "比亚迪宣布固态电池技术重大突破，续航有望突破 1000 公里。", content: "比亚迪今日发布固态电池技术进展，能量密度提升 50%，预计 2026 年量产。" },
-                { id: 19, title: "小鹏 XNGP 城市导航辅助驾驶全国开通", category: "auto", icon: "🛣️", time: "刚刚", source: "36氪", summary: "小鹏汽车宣布 XNGP 城市导航辅助驾驶功能在全国所有城市开放。", content: "小鹏汽车今日宣布，XNGP 城市导航辅助驾驶功能已在全国所有城市开放，无需高精地图。" },
-                { id: 20, title: "大众安徽首款智能轿跑 SUV 曝光", category: "auto", icon: "🏎️", time: "刚刚", source: "汽车之家", summary: "大众安徽首款车型谍照曝光，定位智能轿跑 SUV，搭载大疆智驾系统。", content: "大众安徽首款车型谍照曝光。新车定位智能轿跑 SUV，搭载大疆智驾系统，预计 2026 年上市。" },
-                { id: 21, title: "理想汽车第 100 万辆整车下线", category: "auto", icon: "🎯", time: "刚刚", source: "晚点Auto", summary: "理想汽车宣布第 100 万辆整车正式下线，用时不到 5 年。", content: "理想汽车今日宣布，第 100 万辆整车正式下线。从首辆车到 100 万辆，用时不到 5 年。" },
-                { id: 22, title: "宁德时代发布神行 Plus 电池", category: "auto", icon: "⚡", time: "刚刚", source: "IT之家", summary: "宁德时代发布神行 Plus 电池，充电 10 分钟续航 600 公里。", content: "宁德时代今日发布神行 Plus 电池。充电 10 分钟可续航 600 公里，能量密度提升 20%。" }
-            ];
-            document.getElementById('updateTime').textContent = '静态模式';
-            render('all');
-        }
-        
-        function render(filter) {
-            const list = document.getElementById('newsList');
-            const filtered = filter === 'all' ? allNews : allNews.filter(n => n.category === filter);
-            if (!filtered.length) { list.innerHTML = '<div class="loading">暂无资讯</div>'; return; }
-            list.innerHTML = filtered.map(item => `
-                <article class="news-card" onclick="toggle(this)">
-                    <div class="news-header">
-                        <div class="news-icon">${item.icon}</div>
-                        <div class="news-content">
-                            <div class="news-meta">
-                                <span class="news-tag">${item.category.toUpperCase()}</span>
-                                <span class="news-time">${item.time}</span>
-                            </div>
-                            <h3 class="news-title">${item.title}</h3>
-                            <p class="news-summary">${item.summary}</p>
-                            <p class="news-source">📰 ${item.source}</p>
-                        </div>
-                        <button class="expand-btn">📖 展开</button>
-                    </div>
-                    <div class="news-detail">
-                        <p class="detail-content">${item.content}</p>
-                        <a href="${item.url || '#'}" class="read-more-link" target="_blank">🔗 阅读原文</a>
-                    </div>
-                </article>
-            `).join('');
-        }
-        
-        function toggle(card) { card.classList.toggle('expanded'); card.querySelector('.expand-btn').textContent = card.classList.contains('expanded') ? '📖 收起' : '📖 展开'; }
-        
-        function filter(cat) { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); event.target.classList.add('active'); render(cat); }
-        
-        loadNews();
-        setInterval(loadNews, 300000);
-    </script>
+    <div class="container">
+        <header>
+            <h1>AI TECH AGGREGATOR</h1>
+            <div class="last-update" id="last-update">Loading data...</div>
+        </header>
+        <main class="news-grid" id="news-container">
 </body>
 </html>
